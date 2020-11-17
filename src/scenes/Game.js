@@ -7,7 +7,7 @@ class Game extends Phaser.Scene {
 
   preload() {
     this.load.image('mage', 'assets/mage/mage.png');
-    this.load.spritesheet('idle_spreadsheet', 'assets/mage/idle_spritesheet.png', { frameWidth: 128, frameHeight: 128 });
+    this.load.spritesheet('spritesheet', 'assets/mage/spritesheet.png', { frameWidth: 128, frameHeight: 128 });
   }
 
   create() {
@@ -15,7 +15,7 @@ class Game extends Phaser.Scene {
       key: 'hero-idle',
       frames: [
         { frame: 0, key: 'mage', duration: 5000 },
-        ... this.anims.generateFrameNumbers('idle_spreadsheet', {})
+        ... this.anims.generateFrameNumbers('idle', {})
       ],
       frameRate: 6,
       repeat: -1
