@@ -15,7 +15,7 @@ class Game extends Phaser.Scene {
       key: 'hero-idle',
       frames: [
         { frame: 0, key: 'mage', duration: 5000 },
-        ... this.anims.generateFrameNumbers('idle', {})
+        ... this.anims.generateFrameNumbers('spritesheet', {})
       ],
       frameRate: 6,
       repeat: -1
