@@ -2,7 +2,7 @@
 // @ts-check
 
 import Phaser from 'phaser';
-
+import Hero from '../entities/Hero.js';
 class Game extends Phaser.Scene {
 
   preload() {
@@ -20,10 +20,8 @@ class Game extends Phaser.Scene {
       frameRate: 6,
       repeat: -1
     });
-
-    let hero = this.physics.add.sprite(400, 300, 'mage');
     
-
+    let hero = new Hero (this, 400, 300);
   }
 
 

@@ -19,3 +19,4 @@ class Hero extends Phaser.GameObjects.Sprite{
 
 
 }
+export default Hero
