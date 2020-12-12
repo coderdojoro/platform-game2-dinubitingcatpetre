@@ -34,6 +34,8 @@ class Game extends Phaser.Scene {
 
 
     let hero = new Hero (this, 400, 300);
+    new Hero(this, 500, 200);
+ 
   }
 
 
