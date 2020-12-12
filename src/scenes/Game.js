@@ -29,12 +29,7 @@ class Game extends Phaser.Scene {
       frameRate: 6,
       repeat: -1
     });
-    
 
-
-
-    let hero = new Hero (this, 400, 300);
-    new Hero(this, 500, 200);
  
   }
 
