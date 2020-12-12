@@ -39,6 +39,7 @@ class Hero extends Phaser.GameObjects.Sprite {
             this.setFlipX(true);
         }
         if (this.keyRight.isDown) {
+            this.body.setMaxVelocity(200, 40);
             this.body.setAccelerationX(500);
             this.anims.play('hero-walk');
             this.setFlipX(false);

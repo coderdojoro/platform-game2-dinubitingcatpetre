@@ -7,8 +7,8 @@ class Game extends Phaser.Scene {
 
   preload() {
     this.load.image('mage', 'assets/mage/mage.png');
-    this.load.spritesheet('spritesheet', 'assets/mage/spritesheet.png', { frameWidth: 128, frameHeight: 128 });
-    this.load.spritesheet('walk-spritesheet', 'assets/mage/walk.png', { frameWidth: 128, frameHeight: 128 });
+    this.load.spritesheet('spritesheet', 'assets/mage/spritesheet.png', { frameWidth: 171, frameHeight: 128 });
+    this.load.spritesheet('walk-spritesheet', 'assets/mage/walk.png', { frameWidth: 171, frameHeight: 128 });
   }
   
 
