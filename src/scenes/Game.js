@@ -6,9 +6,9 @@ import Hero from '../entities/Hero.js';
 class Game extends Phaser.Scene {
 
   preload() {
-    this.load.image('mage', 'assets/mage/mage.png');
-    this.load.spritesheet('spritesheet', 'assets/mage/idle.png', { frameWidth: 171, frameHeight: 128 });
-    this.load.spritesheet('walk-spritesheet', 'assets/mage/walk.png', { frameWidth: 171, frameHeight: 128 });
+    this.load.image('hero', 'assets/rogue/rogue.png');
+    this.load.spritesheet('spritesheet', 'assets/rogue/idle.png', { frameWidth: 171, frameHeight: 128 });
+    this.load.spritesheet('walk-spritesheet', 'assets/rogue/walk.png', { frameWidth: 171, frameHeight: 128 });
   }
   
 
@@ -16,7 +16,7 @@ class Game extends Phaser.Scene {
     this.anims.create({
       key: 'hero-idle',
       frames: [
-        { frame: 0, key: 'mage', duration: 5000 },
+        { frame: 0, key: 'hero', duration: 5000 },
         ... this.anims.generateFrameNumbers('spritesheet', {})
       ],
       frameRate: 6,
