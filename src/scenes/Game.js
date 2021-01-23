@@ -9,6 +9,7 @@ class Game extends Phaser.Scene {
     this.load.image('hero', 'assets/rogue/rogue.png');
     this.load.spritesheet('spritesheet', 'assets/rogue/idle.png', { frameWidth: 171, frameHeight: 128 });
     this.load.spritesheet('walk-spritesheet', 'assets/rogue/walk.png', { frameWidth: 171, frameHeight: 128 });
+    this.load.spritesheet('jump-spritesheet', 'assets/rogue/jump.png', { frameWidth: 171, frameHeight: 128 });
   }
   
 
@@ -29,6 +30,18 @@ class Game extends Phaser.Scene {
       frameRate: 6,
       repeat: -1
     });
+    
+    this.anims.create({
+      key: 'hero-jump'
+      ,frames: this.anims.generateFrameNumbers('jump-spritesheet', {}),
+      frameRate: 6,
+      repeat: 0
+    });
+    
+    
+    
+    
+    
     
     let hero = new Hero (this, 400, 300);
 

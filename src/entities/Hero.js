@@ -5,6 +5,7 @@ class Hero extends Phaser.GameObjects.Sprite {
 
     keyLeft;
     keyRight;
+    keySpace;
     heroState = 'idle';
     animState = 'idle';
 
@@ -23,11 +24,11 @@ class Hero extends Phaser.GameObjects.Sprite {
         this.body.setSize(33, 54);
         this.body.setOffset(70, 57);
         this.anims.play('hero-idle');
-        this.body.setDragX(1500);
+        this.body.setDragX(1200);
 
-        this.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-        this.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-        this.keyUp = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+        this.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        this.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        this.keySpace = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
 
     };
 
@@ -38,7 +39,7 @@ class Hero extends Phaser.GameObjects.Sprite {
             return;
         }
 
-        if(this.keyLeft.isUp && this.keyRight.isUp){
+        if(this.keyLeft.isUp && this.keyRight.isUp && this.body.onFloor() && this.body.velocity.y == 0){
             this.body.setAccelerationX(0);
             this.heroState = "idle";
         }
@@ -58,6 +59,13 @@ class Hero extends Phaser.GameObjects.Sprite {
             this.heroState = 'walk';
         } 
 
+        
+        if (this.keySpace.isDown && this.heroState != 'jump') {
+            this.body.setVelocityY(-550)
+            this.heroState = 'jump'
+        }
+        
+        
         if(this.heroState == 'idle' && this.animState != "idle") {
             this.anims.play('hero-idle');
             this.animState = 'idle';
@@ -66,7 +74,20 @@ class Hero extends Phaser.GameObjects.Sprite {
             this.anims.play('hero-walk');
             this.animState = 'walk';
         }
+        if(this.heroState == "jump" && this.animState != "jump") {
+            this.anims.play('hero-jump');
+            this.animState = 'jump';
+            console.log('anim jump');
+        }
+            console.log("heroState:" + this.heroState + " animState:" + this.animState);
+
+    
     }
+
+
+    
+
+
 
 }
 
