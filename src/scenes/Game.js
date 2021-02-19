@@ -48,7 +48,7 @@ class Game extends Phaser.Scene {
     this.anims.create({
       key: 'hero-double-jump',
       frames: this.anims.generateFrameNumbers('double-jump-spritesheet', {}),
-      frameRate: 20,
+      frameRate: 10,
       repeat: 0
     });
 
