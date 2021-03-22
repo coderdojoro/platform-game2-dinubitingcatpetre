@@ -14,7 +14,6 @@ class Game extends Phaser.Scene {
     this.load.spritesheet('double-jump-spritesheet', 'assets/rogue/double-jump.png', { frameWidth: 171, frameHeight: 128 });
 
     this.load.tilemapTiledJSON('level1-tilemap', 'assets/tilemap.json');
-
     this.load.image('ground-image', 'assets/tiles/tiles.png ');
     this.load.image('bush-image', 'assets/tiles/bush-and-trees.png');
 
@@ -48,32 +47,47 @@ class Game extends Phaser.Scene {
     this.anims.create({
       key: 'hero-double-jump',
       frames: this.anims.generateFrameNumbers('double-jump-spritesheet', {}),
-      frameRate: 10,
+      frameRate: 20,
       repeat: 0
     });
 
 
-    let hero = new Hero(this, 400, 300);
 
-    this.map = this.make.tilemap({ key: 'level1-tilemap' });
-    this.groundTiles = this.map.addTilesetImage('ground', 'ground-image');
-    this.bushTiles = this.map.addTilesetImage('bush', 'bush-image');
+    let map = this.make.tilemap({ key: 'level1-tilemap' });
+    let groundTiles = map.addTilesetImage('ground', 'ground-image');
+    let bushTiles = map.addTilesetImage('bush', 'bush-image');
 
-    this.map.createStaticLayer('background' /*layer name from json*/, [this.groundTiles, this.bushTiles]);
-    this.groundLayer = this.map.createStaticLayer('ground' /*layer name from json*/, this.groundTiles);
-    this.map.createStaticLayer('foreground' /*layer name from json*/, [this.groundTiles, this.bushTiles]);
+    let objects = map.getObjectLayer('Objects').objects;
 
-    this.children.moveTo(hero, this.children.getIndex(this.map.getLayer('ground').tilemapLayer));
+    let heroX;
+    let heroY;
+    for (let a = 0; a < objects.length; a++) {
+      let object = objects[a];
+      if (object.name == 'Start') {
+        heroX = object.x;
+        heroY = object.y
+      }
+    }
 
-    this.physics.add.collider(hero, this.groundLayer);
-    this.groundLayer.setCollisionBetween(this.groundTiles.firstgid, this.groundTiles.firstgid + this.groundTiles.total, true);
 
-    this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+
+
+
+
+
+
+    let bkg = map.createStaticLayer('background', [groundTiles, bushTiles]);
+    let hero = new Hero(this, heroX, heroY);
+    let groundLayer = map.createStaticLayer('ground', [groundTiles, bushTiles]);
+    let fgd = map.createStaticLayer('foreground', [groundTiles, bushTiles])
+
+    this.physics.add.collider(hero, groundLayer);
+    groundLayer.setCollisionBetween(groundTiles.firstgid, groundTiles.firstgid + groundTiles.total, true);
+
     this.cameras.main.startFollow(hero);
-    this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
-    //ca să nu dea cu capul de cer
+    this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+    this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.physics.world.setBoundsCollision(true, true, false, true);
-
   }
 
 

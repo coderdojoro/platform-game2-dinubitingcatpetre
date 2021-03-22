@@ -71,6 +71,22 @@ class Hero extends Phaser.GameObjects.Sprite {
             this.heroState = 'double-jump';
         }
 
+        if (this.body.onFloor)
+
+
+
+
+        if (this.heroState == 'jump' || this.heroState == 'double-jump') {
+            if (this.keyRight.isDown) {
+                this.setFlipX(false);
+                this.body.setAccelerationX(500);
+            }
+            if (this.keyLeft.isDown) {
+                this.setFlipX(true);
+                this.body.setAccelerationX(-500);
+            }
+        }
+       
         if (this.heroState == "idle" && this.animState != "idle") {
             this.anims.play('hero-idle');
             this.animState = "idle";
@@ -88,6 +104,12 @@ class Hero extends Phaser.GameObjects.Sprite {
             this.anims.play('hero-double-jump');
             this.animState = 'double-jump';
         }
+
+
+
+
+
+
 
         console.log("heroState:" + this.heroState + " animState:" + this.animState);
 
